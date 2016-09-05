@@ -1,0 +1,55 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="../paper-input/paper-input-addon-behavior.html">
+
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-item/paper-item.html">
+
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+
+<dom-module id="polywc-input-listbox">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+                float: left;
+                width: 100%;
+            }
+
+            :host([hidden]) {
+                display: none !important;
+            }
+
+            :host-context([dir="rtl"]) {
+                float: left;
+            }
+
+        </style>
+
+        <paper-material id="lstSuggestion"  elevation="1">
+            <template is="dom-repeat" items="[[suggestions]]">
+                <paper-item index="[[index]]" on-click="_handleItemSelected">[[item.text]]</paper-item>
+            </template>
+        </paper-material>
+    </template>
+    <script>
+        Polymer({
+            is: 'polywc-input-listbox',
+
+            properties: {
+                suggestions:    { type: Array }
+            },
+
+            behaviors: [
+                Polymer.PaperInputAddonBehavior
+            ],
+
+            _handleItemSelected: function(event) {
+                var index = event.currentTarget.index;
+                var item = this.suggestions[index];
+                this.fire('click-item', { item: item } );
+            }
+        });
+    </script>
+</dom-module>

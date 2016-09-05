@@ -1,0 +1,25 @@
+{
+  "name": "polywc-input",
+  "version": "0.0.1",
+  "homepage": "https://github.com/donpir/polywc-input",
+  "authors": [
+    "'Donato Pirozzi <'donatopirozzi@gmail.com'>"
+  ],
+  "description": "A polymer element providing input with autocomplete.",
+  "main": "polywc-input",
+  "license": "LGPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}

@@ -25,20 +25,40 @@
                 float: left;
             }
 
+            paper-material {
+                max-height:282px;
+                overflow-y:scroll;
+            }
+
+
+            .loadmore {
+                padding: 10px;
+                display: block;
+                text-align: right;
+                color: blue;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
         </style>
 
-        <paper-material id="lstSuggestion"  elevation="1">
+        <paper-material id="lstSuggestion" elevation="1">
             <template is="dom-repeat" items="[[suggestions]]">
                 <paper-item index="[[index]]" on-click="_handleItemSelected">[[item.text]]</paper-item>
             </template>
+            <a class="loadmore" hidden$="[[!showLoadMore]]" on-click="_handleLoadMore">Load more ...</a>
         </paper-material>
+
     </template>
     <script>
         Polymer({
             is: 'polywc-input-listbox',
 
             properties: {
-                suggestions:    { type: Array }
+                suggestions:    { type: Array },
+
+                showLoadMore:   { type: Boolean, value: false }
+
             },
 
             behaviors: [
@@ -49,6 +69,10 @@
                 var index = event.currentTarget.index;
                 var item = this.suggestions[index];
                 this.fire('click-item', { item: item } );
+            },
+
+            _handleLoadMore: function(event) {
+                this.fire('load-more', null);
             }
         });
     </script>

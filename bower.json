@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "polywc-input-search": "^0.0.3"
+    "polywc-input-search": "^0.0.4"
   }
 }

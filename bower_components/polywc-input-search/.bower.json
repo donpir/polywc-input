@@ -1,6 +1,6 @@
 {
   "name": "polywc-input-search",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/donpir/polywc-input",
   "authors": [
     "'Donato Pirozzi <'donatopirozzi@gmail.com'>"
@@ -26,13 +26,13 @@
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "web-component-tester": "^4.0.0"
   },
-  "_release": "0.0.3",
+  "_release": "0.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.3",
-    "commit": "ce1e3177f0f2f08a0e013c0af7870818d4d2c81d"
+    "tag": "v0.0.4",
+    "commit": "5ccca832c20566f976e3e5184a553328a25d4af9"
   },
   "_source": "https://github.com/donpir/polywc-input-search.git",
-  "_target": "^0.0.3",
+  "_target": "^0.0.4",
   "_originalSource": "polywc-input-search"
 }

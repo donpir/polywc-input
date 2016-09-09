@@ -51,7 +51,7 @@
 
         <paper-material id="lstSuggestion" elevation="1">
             <template is="dom-repeat" items="[[suggestions]]">
-                <paper-item index="[[index]]" on-click="_handleItemSelected">[[item.text]]</paper-item>
+                <paper-item index="[[index]]" on-click="_handleItemSelected">[[_computeItemValue(item)]]</paper-item>
             </template>
             <a class="loadmore" hidden$="[[!showLoadMore]]" on-click="_handleLoadMore">Load more ...</a>
         </paper-material>
@@ -62,7 +62,8 @@
             is: 'polywc-input-listbox',
 
             properties: {
-                suggestions:    { type: Array },
+                suggestions:        { type: Array },
+                pathForItemValue:   { type: String, value: "text" },
 
                 showLoadMore:   { type: Boolean, value: false }
             },
@@ -79,7 +80,12 @@
 
             _handleLoadMore: function(event) {
                 this.fire('load-more', null);
+            },
+
+            _computeItemValue: function(item) {
+                return item[this.pathForItemValue];
             }
+
         });
     </script>
 </dom-module>

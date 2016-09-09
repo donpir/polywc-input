@@ -32,7 +32,8 @@
             <paper-input-container>
                 <label>[[label]]</label>
                 <input id="txtInput" is="iron-input" on-keyup="_handleOnKeyUp" on-focus="_handleOnFocus" on-blur="_handleOnBlur" bind-value="{{value}}">
-                <polywc-input-listbox id="wcListbox" suggestions="[[_suggestions]]" on-click-item="_handleOnClickItem"></polywc-input-listbox>
+                <polywc-input-listbox id="wcListbox" suggestions="[[_suggestions]]" path-for-item-value="[[pathForItemValue]]"
+                                      on-click-item="_handleOnClickItem"></polywc-input-listbox>
                 <polywc-error-label id="toastError"></polywc-error-label>
             </paper-input-container>
         </paper-material>
@@ -72,16 +73,16 @@
                 suggestions:    { type: Array  },
                 value:          { type: String, notify: true },
 
-                remote:         { type: String, value: null },
-                pathForText:    { type: String, value: 'value' },
-                pathForItems:   { type: String, value: null },
+                remote:              { type: String, value: null },
+                pathForItemValue:    { type: String, value: 'value' },
+                pathForItems:        { type: String, value: null },
 
                 _suggestions:   { type: Array, value: [] }
             },
 
             _handleOnClickItem: function(event) {
                 var item = event.detail.item;
-                this.$.txtInput.value = item.text;
+                this.$.txtInput.value = item[this.pathForItemValue];
                 this.$.wcListbox.hidden = true;
                 this.fire("change", { item: item });
             },
@@ -117,9 +118,13 @@
                     $this.$.toastError.hidden = response.success;
 
                     if (response.success) {
-                        var items = JSON.parse(response.responseText).items;
+                        var jsonResponse = JSON.parse(response.responseText);
+                        var items = jsonResponse;
+
+                        if ($this.pathForItems)
+                            items = jsonResponse[$this.pathForItems];
+
                         for (var i= 0, item=null; i<items.length && (item = items[i]); i++) {
-                            item.text = item.login;
                             $this.push('_suggestions', item);
                         }//EndFor.
                     }

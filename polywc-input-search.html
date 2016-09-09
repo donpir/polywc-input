@@ -1,0 +1,91 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../paper-input/paper-input-container.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../iron-input/iron-input.html">
+
+<link rel="import" href="polywc-input-listbox.html">
+
+<!-- TEST -->
+<link rel="import" href="../paper-input/paper-input.html">
+
+
+<dom-module id="polywc-input-search">
+    <template>
+        <style>
+            /*:host {
+
+
+            }
+            :host([hidden]) {
+                display: none !important;
+            }
+            :host-context([dir="rtl"]) {
+                float: left;
+            }*/
+
+        </style>
+
+
+        <paper-material elevation="0" >
+            <paper-input-container>
+                <label>[[label]]</label>
+                <input id="txtInput" is="iron-input" on-keyup="_handleOnKeyUp" on-focus="_handleOnFocus" on-blur="_handleOnBlur" bind-value="{{value}}">
+                <polywc-input-listbox id="wcListbox" suggestions="[[_suggestions]]" on-click-item="_handleOnClickItem"></polywc-input-listbox>
+            </paper-input-container>
+        </paper-material>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'polywc-input-search',
+
+            properties: {
+                label:          { type: String },
+                suggestions:    { type: Array  },
+                value:          { type: String, notify: true },
+
+                _suggestions:   { type: Array, value: [] }
+            },
+
+            _handleOnClickItem: function(event) {
+                var item = event.detail.item;
+                this.$.txtInput.value = item.text;
+                this.$.wcListbox.hidden = true;
+                this.fire("change", { item: item });
+            },
+
+            _handleOnKeyUp: function(event) {
+                var searchtext = event.currentTarget.value;
+
+                this._filter(searchtext);
+                this.$.wcListbox.hidden = false;
+            },
+
+            _filter: function(keyword) {
+                if (this.suggestions == null || keyword == null || keyword.trim().length == 0) {
+                    this._suggestions = [];
+                    return;
+                }
+                this._suggestions = [];
+
+                for (var i= 0, item=null; i<this.suggestions.length && (item = this.suggestions[i]); i++) {
+                    if (item.text.indexOf(keyword) !== -1)
+                        this.push('_suggestions', item);
+                }//EndFor.
+            },
+
+            _handleOnFocus: function(event) {
+                this.$.wcListbox.hidden = false;
+            },
+
+            _handleOnBlur: function(event) {
+                var $wcListbox = this.$.wcListbox;
+                setTimeout(function() {
+                    $wcListbox.hidden = true;
+                }, 200);
+            }
+
+        });
+    </script>
+</dom-module>

@@ -20,7 +20,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <p>An example of <code>&lt;polywc-input-search&gt;</code>:</p>
 
-    <polywc-input-search id="txtSearch" label="Your number" value="two"></polywc-input-search>
+    <polywc-input-search id="txtSearch" label="Your number" value="two"
+           remote="https://api.github.com/search/users?q={value}+in:login" >
+
+    </polywc-input-search>
     <p>
         Some text here.
     </p>

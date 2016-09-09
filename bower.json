@@ -1,6 +1,6 @@
 {
   "name": "polywc-input-search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/donpir/polywc-input",
   "authors": [
     "'Donato Pirozzi <'donatopirozzi@gmail.com'>"
@@ -18,7 +18,10 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
     "iron-input": "PolymerElements/iron-input#^1.0.10",
-    "paper-input": "PolymerElements/paper-input#^1.1.18"
+    "paper-input": "PolymerElements/paper-input#^1.1.18",
+    "paper-material": "PolymerElements/paper-material#~1.0.6",
+    "iron-input": "PolymerElements/iron-input#^1.0.10",
+    "paper-item": "PolymerElements/paper-item#~1.2.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

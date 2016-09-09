@@ -1,0 +1,37 @@
+{
+  "name": "polywc-input-search",
+  "version": "0.0.2",
+  "homepage": "https://github.com/donpir/polywc-input",
+  "authors": [
+    "'Donato Pirozzi <'donatopirozzi@gmail.com'>"
+  ],
+  "description": "A polymer element providing input with autocomplete.",
+  "main": "polywc-input-search",
+  "license": "LGPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "iron-input": "PolymerElements/iron-input#^1.0.10",
+    "paper-input": "PolymerElements/paper-input#^1.1.18"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "21294d6d0d4aa04290a7925e8b4313f470a8cc64"
+  },
+  "_source": "https://github.com/donpir/polywc-input-search.git",
+  "_target": "^0.0.2",
+  "_originalSource": "polywc-input-search",
+  "_direct": true
+}

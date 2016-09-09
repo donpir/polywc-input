@@ -1,0 +1,21 @@
+{
+  "name": "demo",
+  "homepage": "https://github.com/donpir/polywc-input-search",
+  "authors": [
+    "'Donato <'donatopirozzi@gmail.com'>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polywc-input-search": "^0.0.2"
+  }
+}

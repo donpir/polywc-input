@@ -1,0 +1,86 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="../paper-input/paper-input-addon-behavior.html">
+
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-item/paper-item.html">
+
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+
+<dom-module id="paper-input-char-change">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+            }
+
+            :host([hidden]) {
+                display: none !important;
+            }
+
+            input[is="iron-input"] {
+                font: inherit;
+                outline: none;
+                box-shadow: none;
+                border: none;
+                width: auto;
+                text-align: center;
+            }
+
+            :host  {
+                width: 100%;
+                position: absolute;
+                z-index: 1000
+            }
+        </style>
+
+        <paper-material id="lstSuggestion"  elevation="1">
+            <template is="dom-repeat" items="[[_suggestions]]">
+                <paper-item index="[[index]]" on-click="_handleItemSelected">[[item.text]]</paper-item>
+            </template>
+        </paper-material>
+    </template>
+    <script>
+        Polymer({
+            is: 'paper-input-char-change',
+
+            properties: {
+                suggestions:    { type: Array },
+                _suggestions:   { type: Array, value: [] },
+                value:          { type: String, notify: true }
+            },
+
+            filter: function(keyword) {
+                if (this.suggestions == null || keyword == null || keyword.trim().length == 0) {
+                    this._suggestions = [];
+                    return;
+                }
+                this._suggestions = [];
+
+                for (var i= 0, item=null; i<this.suggestions.length && (item = this.suggestions[i]); i++) {
+                    if (item.text.indexOf(keyword) !== -1)
+                        this.push('_suggestions', item);
+                }//EndFor.
+            },
+
+            behaviors: [
+                Polymer.PaperInputAddonBehavior
+            ],
+
+            update: function(state) {
+                console.log("state changed");
+                this.filter(state.value);
+
+            },
+
+            _handleItemSelected: function(event) {
+                var index = event.currentTarget.index;
+                var text = this._suggestions[index].text;
+                this.fire('charchange', { text: text } );
+                this.filter(text);
+                //this.$.lstSuggestion.hidden = true;
+            }
+        });
+    </script>
+</dom-module>

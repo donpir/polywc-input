@@ -95,11 +95,14 @@
             },
 
             _filter: function(keyword) {
-                if (this.suggestions == null || keyword == null || keyword.trim().length == 0) {
+                if (this._suggestions == null)
+                    this._suggestions = [];
+
+                /*if (this.suggestions == null || keyword == null || keyword.trim().length == 0) {
                     this._suggestions = [];
                     return;
                 }
-                this._suggestions = [];
+                this._suggestions = [];*/
 
                 //Check whether the remote attribute has been provided.
                 if (this.remote == null) {

@@ -72,6 +72,7 @@
                 label:          { type: String },
                 suggestions:    { type: Array  },
                 value:          { type: String, notify: true },
+                item:           { type: Object, notify: true },
 
                 remote:              { type: String, value: null },
                 pathForItemValue:    { type: String, value: 'value' },
@@ -82,9 +83,10 @@
 
             _handleOnClickItem: function(event) {
                 var item = event.detail.item;
-                this.$.txtInput.value = item[this.pathForItemValue];
+                this.item = item;
+                this.value = item[this.pathForItemValue];
+                //this.$.txtInput.value = item[this.pathForItemValue];
                 this.$.wcListbox.hidden = true;
-                this.value = item;
                 this.fire("change", { item: item });
             },
 

@@ -84,6 +84,7 @@
                 var item = event.detail.item;
                 this.$.txtInput.value = item[this.pathForItemValue];
                 this.$.wcListbox.hidden = true;
+                this.value = item;
                 this.fire("change", { item: item });
             },
 
